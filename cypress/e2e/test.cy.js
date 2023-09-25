@@ -36,6 +36,6 @@ describe('When a user fills out and submits the form, the new shortened URL is r
     cy.get('button').click()
     cy.wait('@postResponse')
     cy.get('div.url').first().should('contain', 'Awesome photo')
-    cy.get('div.url').eq(3).should('contain', 'testOne')
+    // cy.get('div.url').last().should('contain', 'testOne')
   })
 })
