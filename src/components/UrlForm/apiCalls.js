@@ -3,10 +3,10 @@ export const getUrls = () => {
     response.json()
   );
 };
-export const postUrl = () => {
+export const postUrl = (shortUrl) => {
   return fetch("http://localhost:3001/api/v1/urls", {
     method: "POST",
     headers: { "Content-type": "application/json" },
-    body: JSON.stringify(),
+    body: JSON.stringify(shortUrl),
   }).then((response) => response.json());
 };
