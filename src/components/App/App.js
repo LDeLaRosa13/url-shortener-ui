@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { getUrls } from '../../apiCalls';
+import { getUrls } from '../UrlForm/apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
@@ -8,7 +8,13 @@ function App () {
   const [urls, setUrls] = useState([]);
 
   useEffect(() => {
-
+    getUrls()
+    .then((data) => {
+      setUrls(data.urls)
+    })
+    .catch((error) => {
+      console.log('Error fetching URLS:', error)
+    })
   })
 
   return (
@@ -18,7 +24,7 @@ function App () {
         <UrlForm />
       </header>
 
-      <UrlContainer urls={"<<<Urls should go here>>>"}/>
+      <UrlContainer urls={urls}/>
     </main>
   );
 }
