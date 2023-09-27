@@ -6,6 +6,7 @@ import UrlForm from '../UrlForm/UrlForm';
 
 function App () {
   const [urls, setUrls] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getUrls()
@@ -13,7 +14,8 @@ function App () {
       setUrls(data.urls)
     })
     .catch((error) => {
-      console.log('Error fetching URLS:', error)
+      setError("Error fetching shortened URLs. Please try again!")
+      console.error('Error fetching URLS:', error)
     })
   }, [])
 
@@ -21,7 +23,7 @@ function App () {
     <main className="App">
       <header>
         <h1>URL Shortener</h1>
-        <UrlForm setUrls={setUrls} urls={urls}  />
+        <UrlForm setUrls={setUrls} urls={urls} setError={setError}  />
       </header>
 
       <UrlContainer urls={urls}/>
